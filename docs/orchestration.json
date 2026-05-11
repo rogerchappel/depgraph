@@ -1,0 +1,101 @@
+{
+  "version": "0.1.0",
+  "description": "DepGraph orchestration configuration",
+  "architecture": {
+    "layers": [
+      {
+        "name": "cli",
+        "path": "src/cli.ts",
+        "responsibility": "Entry point and command routing"
+      },
+      {
+        "name": "controllers",
+        "path": "src/controllers/",
+        "responsibility": "Command orchestration and business logic"
+      },
+      {
+        "name": "engine",
+        "path": "src/engine/",
+        "responsibility": "Graph operations, cycle detection, metrics"
+      },
+      {
+        "name": "parsers",
+        "path": "src/parsers/",
+        "responsibility": "Language-specific import extraction"
+      },
+      {
+        "name": "output",
+        "path": "src/output/",
+        "responsibility": "Output format rendering"
+      },
+      {
+        "name": "models",
+        "path": "src/models/",
+        "responsibility": "Type definitions and data structures"
+      }
+    ],
+    "dependencies": [
+      { "from": "cli", "to": ["controllers"] },
+      { "from": "controllers", "to": ["engine", "parsers", "output"] },
+      { "from": "engine", "to": ["models"] },
+      { "from": "parsers", "to": ["models"] },
+      { "from": "output", "to": ["models"] }
+    ]
+  },
+  "languages": [
+    {
+      "name": "typescript",
+      "extensions": [".ts", ".tsx", ".js", ".jsx"],
+      "parser": "src/parsers/typescript.ts"
+    },
+    {
+      "name": "python",
+      "extensions": [".py"],
+      "parser": "src/parsers/python.ts"
+    },
+    {
+      "name": "go",
+      "extensions": [".go"],
+      "parser": "src/parsers/go.ts"
+    }
+  ],
+  "commands": [
+    {
+      "name": "analyze",
+      "controller": "src/controllers/analyze.ts",
+      "description": "Build and display dependency graph"
+    },
+    {
+      "name": "cycles",
+      "controller": "src/controllers/cycles.ts",
+      "description": "Detect and show circular dependencies"
+    },
+    {
+      "name": "report",
+      "controller": "src/controllers/report.ts",
+      "description": "Text summary with stats"
+    },
+    {
+      "name": "visualize",
+      "controller": "src/controllers/visualize.ts",
+      "description": "Output in visual formats"
+    },
+    {
+      "name": "focus",
+      "controller": "src/controllers/focus.ts",
+      "description": "Show dependency tree for module"
+    },
+    {
+      "name": "check-layers",
+      "controller": "src/controllers/checkLayers.ts",
+      "description": "Verify layer rules"
+    }
+  ],
+  "outputFormats": [
+    { "name": "text", "file": "src/output/text.ts" },
+    { "name": "json", "file": "src/output/json.ts" },
+    { "name": "dot", "file": "src/output/dot.ts" },
+    { "name": "mermaid", "file": "src/output/mermaid.ts" },
+    { "name": "csv", "file": "src/output/csv.ts" }
+  ]
+}
