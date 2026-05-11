@@ -1,0 +1,14 @@
+{
+  "layers": [
+    { "name": "utils", "paths": ["src/utils/**"] },
+    { "name": "core", "paths": ["src/core/**"] },
+    { "name": "services", "paths": ["src/services/**"] },
+    { "name": "ui", "paths": ["src/ui/**"] }
+  ],
+  "rules": [
+    { "from": "utils", "to": ["utils"], "type": "allow" },
+    { "from": "core", "to": ["core", "utils", "services"], "type": "allow" },
+    { "from": "services", "to": ["services", "utils", "core"], "type": "allow" },
+    { "from": "ui", "to": ["ui", "utils"], "type": "allow" }
+  ]
+}
