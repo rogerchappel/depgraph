@@ -278,6 +278,17 @@ const argv = yargs(hideBin(process.argv))
     }
   )
   .demandCommand(1, 'You need to specify a command')
+  .strict()
+  .fail((msg, err, yargs) => {
+    if (msg) {
+      console.error(`depgraph: ${msg}`);
+    }
+    if (err) {
+      console.error(`depgraph: ${err.message}`);
+    }
+    console.error(yargs.help());
+    process.exit(1);
+  })
   .recommendCommands()
   .help('h')
   .alias('h', 'help')
