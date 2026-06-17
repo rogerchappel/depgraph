@@ -141,6 +141,14 @@ This repo includes example projects under `examples/` with known dependency patt
 - `examples/python-example/` — Python project mirroring the TS structure
 - `examples/go-example/` — Go project with similar patterns
 
+Run the bundled gallery demo to generate one artifact per language:
+
+```bash
+bash demo/run-example-gallery.sh
+```
+
+It writes JSON, text, and Mermaid outputs under `.tmp/demo-example-gallery/` for quick review or screencast capture. See [docs/tutorials/multi-language-fixture-gallery.md](docs/tutorials/multi-language-fixture-gallery.md) for the walkthrough.
+
 ## How It Works
 
 1. **Walk** the project directory for source files (filtered by language and exclude patterns)
