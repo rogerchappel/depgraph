@@ -27,7 +27,7 @@
     "lint": "echo 'linting skipped'",
     "smoke": "bash scripts/smoke.sh",
     "prepublishOnly": "npm run build",
-    "package:smoke": "npm pack --dry-run",
+    "package:smoke": "npm run build && npm pack --dry-run",
     "release:check": "npm test && npm run check && npm run build && npm run smoke && npm run package:smoke"
   },
   "keywords": [

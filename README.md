@@ -159,6 +159,15 @@ It writes JSON, text, and Mermaid outputs under `.tmp/demo-example-gallery/` for
 
 Completely offline. No network calls. No telemetry.
 
+## Limitations And Safety
+
+- DepGraph parses source files statically and does not execute project code,
+  build scripts, or tests.
+- Dynamic imports, generated code, non-relative package aliases, and language
+  features outside the supported import patterns may produce incomplete edges.
+- Treat graph output as review guidance before refactors, not as a complete
+  security or architecture audit.
+
 ## Development
 
 ```bash
