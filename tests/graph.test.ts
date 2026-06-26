@@ -109,6 +109,7 @@ describe('Graph Engine', () => {
       const cycles = detectCycles(graph);
       assert.ok(cycles.length >= 1, 'Should detect at least one cycle');
       assert.ok(cycles[0].length >= 2, 'Cycle should have at least 2 nodes');
+      assert.strictEqual(cycles[0].modules[0], cycles[0].modules[cycles[0].modules.length - 1], 'Cycle should close on the start node');
     });
 
     it('should detect a 3-node cycle', () => {
