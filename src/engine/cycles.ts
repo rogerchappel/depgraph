@@ -62,12 +62,12 @@ function reconstructCycle(
   current: string,
   start: string
 ): CyclePath {
-  const path: string[] = [start];
+  const path: string[] = [current];
   let node = current;
 
   while (node !== start) {
-    path.push(node);
     node = parent.get(node) || start;
+    path.push(node);
   }
 
   path.reverse();

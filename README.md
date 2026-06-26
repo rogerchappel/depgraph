@@ -135,11 +135,11 @@ Layer rules are defined in JSON:
 
 ## Example Fixture Projects
 
-This repo includes example projects under `examples/` with known dependency patterns and cycles for testing:
+This repo includes example projects under `examples/` with known dependency patterns for testing:
 
-- `examples/typescript-example/` — TypeScript project with auth↔config and ui↔services cycles
-- `examples/python-example/` — Python project mirroring the TS structure
-- `examples/go-example/` — Go project with similar patterns
+- `examples/typescript-example/` — TypeScript project with a known ui↔services cycle and layer-rule violations
+- `examples/python-example/` — Minimal Python project for parser and smoke coverage
+- `examples/go-example/` — Go project with layered package imports for parser and smoke coverage
 
 Run the bundled gallery demo to generate one artifact per language:
 
