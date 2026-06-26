@@ -49,15 +49,15 @@ fi
 # Test 3: TypeScript cycles detection
 echo ""
 echo "Test 3: TypeScript cycles detection"
-if $DEPGRAPH cycles "$TS_EXAMPLE" --language typescript 2>&1 | grep -q "cycle"; then
-  pass "TypeScript cycles detected"
+if CYCLES_JSON=$($DEPGRAPH cycles "$TS_EXAMPLE" --language typescript --format json 2>/dev/null); then
+  fail "TypeScript cycles command should exit non-zero when fixture cycles are present"
+elif echo "$CYCLES_JSON" | grep -q '"src/ui/userList"' && \
+  echo "$CYCLES_JSON" | grep -q '"src/services/user"' && \
+  echo "$CYCLES_JSON" | grep -q '"count": 1'; then
+  pass "TypeScript fixture cycle detected with expected modules"
 else
-  # Accept non-zero exit as cycles were found
-  if $DEPGRAPH cycles "$TS_EXAMPLE" --language typescript 2>&1; then
-    pass "TypeScript cycles command ran (no cycles found)"
-  else
-    pass "TypeScript cycles command ran with exit code (cycles found)"
-  fi
+  echo "$CYCLES_JSON"
+  fail "TypeScript cycles output did not match the known fixture"
 fi
 
 # Test 4: TypeScript report
