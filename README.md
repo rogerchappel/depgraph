@@ -62,6 +62,14 @@ depgraph check-layers /path/to/project --language typescript --rules layers.json
 - **mermaid**: Mermaid syntax for GitHub/GitLab markdown rendering
 - **csv**: Flat edge list for spreadsheet analysis
 
+## Verification
+
+Run the full local gate before changing parsers, reports, or package metadata:
+
+```bash
+npm run release:check
+```
+
 ## Commands
 
 ### `analyze`
