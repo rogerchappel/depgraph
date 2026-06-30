@@ -6,6 +6,20 @@ DepGraph is a local-first, offline CLI that statically analyzes dependency graph
 
 Built for engineers who need to understand unfamiliar codebases, tech leads auditing architecture before refactoring, and agentic workflows that need module-level context for safe edits.
 
+
+## Quickstart
+
+Run the tool from a fresh checkout:
+
+```sh
+npm install
+npm run build
+node dist/cli.js --help
+npm test
+```
+
+The help command is a quick smoke test for the CLI entrypoint, and `npm test` runs the committed regression suite before you depend on the output.
+
 ## Why DepGraph Exists
 
 Dependency sprawl is invisible until it isn't. A year into a project, you find out:
